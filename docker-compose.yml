@@ -1,0 +1,18 @@
+services:
+  java:
+    image: adoptopenjdk/openjdk10:latest
+  mongo:
+    image: mongo
+    expose:
+      - "27017"
+    ports:
+     - "0.0.0.0:27017:27017"
+  spring_boot_mongo:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_.HOST=mongo
+    links:
+      - java
+version: "2"
