@@ -2,7 +2,7 @@
 
 To run this application:
 
-Run the main class: FirstSpringApplication
+Run the main class: SpringBootMongodbApplication
 
 Steps to create docker image and run container from command prompt:
 1. cd into the root folder which has Docker file and run: docker build -t mukhou/springbootmongodb .
