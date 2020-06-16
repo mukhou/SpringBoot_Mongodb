@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springbootmongodb
+  labels:
+    app: springbootmongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springbootmongodb
+  template:
+    metadata:
+      labels:
+        app: springbootmongodb
+    spec:
+      containers:
+      - name: springbootmongodb
+        image: mukhou/springbootmongodb
+      - name: mongo
+        image: mongo

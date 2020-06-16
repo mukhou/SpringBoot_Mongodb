@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springbootmongodb
+  labels:
+    app: springbootmongodb
+spec:
+  type: ClusterIP
+  ports:
+  - name: 8080-8080
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: springbootmongodb
