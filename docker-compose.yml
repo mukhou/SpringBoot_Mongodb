@@ -1,12 +1,8 @@
 services:
   java:
-    image: adoptopenjdk/openjdk10:latest
+    image: openjdk:8-jdk-alpine
   mongo:
     image: mongo
-    expose:
-      - "27017"
-    ports:
-     - "0.0.0.0:27017:27017"
   spring_boot_mongo:
     build: .
     ports:
