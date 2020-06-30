@@ -25,7 +25,7 @@ From command prompt, cd into the root folder which has Docker file and directly 
 5. kubectl create -f service-definition.yml
 6. verify pods, replicas, services and deployment created: kubeclt get all
 7. forward port to access application from cluster: kubectl port-forward svc/springbootmongodb 8080:8080
-8. Verify: http://localhost:8080/employees
+8. Verify: http://localhost:8080/product/list
 
 
 
