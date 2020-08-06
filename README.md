@@ -18,12 +18,12 @@ Method2:
 From command prompt, cd into the root folder which has Docker file and directly run this command: docker-compose up
 
 **Steps to run this application on kubernetes:**
-1. build the docker image following above section(step #1)
+1. build the docker image following above section(step #1, Method #1)
 2. publish image to docker hub: docker push mukhou/springbootmongodb
 3. cd into the root folder which has deployment and service file and run:
 4. kubectl create -f deployment-definition.yml
 5. kubectl create -f service-definition.yml
-6. verify pods, replicas, services and deployment created: kubeclt get all
+6. verify pods, replicas, services and deployment created: kubectl get all
 7. forward port to access application from cluster: kubectl port-forward svc/springbootmongodb 8080:8080
 8. Verify: http://localhost:8080/product/list
 
