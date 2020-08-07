@@ -15,8 +15,7 @@ spec:
         app: springbootmongodb
     spec:
       containers:
-      - name: springbootmongodb
-        image: mukhou/springbootmongodb
-        env:
-          - name: SPRING_DATA_MONGODB_.HOST
-            value: mongodb
+        - name: springbootmongodb
+          image: mukhou/springbootmongodb
+        - name: mongo
+          image: mongo

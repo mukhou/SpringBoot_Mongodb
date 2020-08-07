@@ -5,7 +5,7 @@ metadata:
   labels:
     app: springbootmongodb
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: 8080-8080
     port: 8080
