@@ -7,8 +7,9 @@ services:
     build: .
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_DATA_MONGODB_.HOST=mongo
+#    environment:
+#      - SPRING_DATA_MONGODB_.HOST=mongo
     links:
       - java
+      - mongo
 version: "2"

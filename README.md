@@ -30,6 +30,15 @@ Create a **single** deployment and service files for spring app and mongo:
 7. forward port to access application from cluster: kubectl port-forward svc/springbootmongodb 8080:8080
 8. Verify: http://localhost:8080/product/list
 
+**Notes**: If you don't want to set the environment variable **SPRING_DATA_MONGODB_.HOST** in docker-compose file,  then do the following:
+1. add the service named "**mongo**" under "**links**" section in docker-compose file 
+2. set the below two properties in application.properties file:
+   spring.data.mongodb.host=mongo
+   spring.data.mongodb.port=27017
+
+In this way, the spring app will connect to the **host of the service named "mongo" defined in the docker-compose file**, instead
+of connecting to localhost, which it does by default.
+
 
 **Method2:**
 Create a **separate** deployment files and service files for spring app and mongo:
@@ -48,5 +57,5 @@ Create a **separate** deployment files and service files for spring app and mong
 
 **Notes**
 In deployment-definition.yml file, we need to set the env variable for spring data mongo db host to that of the 
-mongo db service created, similar to how we did for dockerizing the app.
+mongo db service created, similar to how we did in docker-compose.yml file for dockerizing the app(if using that approach).
 
