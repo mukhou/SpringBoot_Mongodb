@@ -17,20 +17,11 @@ Create docker image and run container from command prompt:
 **Method2:**
 From command prompt, cd into the root folder which has Docker file and directly run this command: docker-compose up
 
-**Notes**: If you don't want to set the environment variable **SPRING_DATA_MONGODB_.HOST** in docker-compose file, 
- then do the following:
-  set the below two properties in application.properties file:
-   spring.data.mongodb.host=mongo
-   spring.data.mongodb.port=27017
-
-In this way, the spring app will connect to the **host of the service named "mongo" defined in the docker-compose file**, instead
-of connecting to localhost, which it does by default.
-
 **Steps to run this application on kubernetes:**
 
 **Method1:**
 Create a **single** deployment and service files for spring app and mongo:
-1. build the docker image following above section(step #1, Method #1)
+1. build the docker image: docker build -t mukhou/springbootmongodb .
 2. publish image to docker hub: docker push mukhou/springbootmongodb
 3. cd into the root folder which has deployment and service file and run:
 4. kubectl create -f deployment-all.yml
@@ -42,18 +33,31 @@ Create a **single** deployment and service files for spring app and mongo:
 
 **Method2:**
 Create a **separate** deployment files and service files for spring app and mongo:
-1. build the docker image following above section(step #1, Method #1)
-2. publish image to docker hub: docker push mukhou/springbootmongodb
-3. cd into the root folder which has deployment and service file and run:
-4. Create mongo deployment: kubectl create -f deployment-mongo.yml
-5. Create mongo service: kubectl create -f service-mongo.yml
-6. verify pods, replicas, services and deployment created: kubectl get all
-7. Create app deployment: kubectl create -f deployment-definition.yml
-8. Create app service: kubectl create -f service-definition.yml
-9. verify pods, replicas, services and deployment created: kubectl get all
-10. forward port to access application from cluster: kubectl port-forward svc/springbootmongodb 8080:8080
-11. Verify: http://localhost:8080/product/list
+1. Uncomment hte belwo two lines in app.properties:
+       spring.data.mongodb.host=mongo
+       spring.data.mongodb.port=27017
+2. build the docker image: docker build -t mukhou/springbootmongodb .
+3. publish image to docker hub: docker push mukhou/springbootmongodb
+4. cd into the root folder which has deployment and service file and run:
+5. Create mongo deployment: kubectl create -f deployment-mongo.yml
+6. Create mongo service: kubectl create -f service-mongo.yml
+7. verify pods, replicas, services and deployment created: kubectl get all
+8. Create app deployment: kubectl create -f deployment-definition.yml
+9. Create app service: kubectl create -f service-definition.yml
+10. verify pods, replicas, services and deployment created: kubectl get all
+11. forward port to access application from cluster: kubectl port-forward svc/springbootmongodb 8080:8080
+12. Verify: http://localhost:8080/product/list
 
+
+**Notes**: For using separate deployemnt and service yaml files for java app and mongo db, do the following
+(per this stackoverflow post: 
+https://stackoverflow.com/questions/63293177/accessing-service-from-another-service-in-kubernetes/63294983#63294983):
+  set the below two properties in application.properties file:
+   spring.data.mongodb.host=mongo
+   spring.data.mongodb.port=27017
+
+In this way, the spring app will connect to the **host of the service named "mongo" defined in the docker-compose file**, instead
+of connecting to localhost, which it does by default.
 
 **Notes**
 In deployment-definition.yml file, we need to set the env variable for spring data mongo db host to that of the 
