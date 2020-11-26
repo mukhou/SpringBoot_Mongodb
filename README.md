@@ -17,9 +17,9 @@ Create docker image and run container from command prompt:
 **Method2:**
 From command prompt, cd into the root folder which has Docker file and directly run this command: docker-compose up
 
-**Notes**: If you don't want to set the environment variable **SPRING_DATA_MONGODB_.HOST** in docker-compose file,  then do the following:
-1. add the service named "**mongo**" under "**links**" section in docker-compose file 
-2. set the below two properties in application.properties file:
+**Notes**: If you don't want to set the environment variable **SPRING_DATA_MONGODB_.HOST** in docker-compose file, 
+ then do the following:
+  set the below two properties in application.properties file:
    spring.data.mongodb.host=mongo
    spring.data.mongodb.port=27017
 
