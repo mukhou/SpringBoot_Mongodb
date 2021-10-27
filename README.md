@@ -33,7 +33,7 @@ Create a **single** deployment and service files for spring app and mongo:
 
 **Method2:**
 Create a **separate** deployment files and service files for spring app and mongo:
-1. Uncomment hte belwo two lines in app.properties:
+1. Uncomment the below two lines in application.properties and then rebuild the application:
        spring.data.mongodb.host=mongo
        spring.data.mongodb.port=27017
 2. build the docker image: docker build -t mukhou/springbootmongodb .
